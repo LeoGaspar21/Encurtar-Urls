@@ -23,17 +23,17 @@ public class Url implements Serializable{
 	private String originalUrl;
 	
 	@Column(nullable = false, unique = true)
-	private String shortUrl;
+	private String shortCode;
 	
 	public Url() {
 		
 	}
 
-	public Url(Long id, String originalUrl, String shortUrl) {
+	public Url(Long id, String originalUrl, String shortCode) {
 		super();
 		this.id = id;
 		this.originalUrl = originalUrl;
-		this.shortUrl = shortUrl;
+		this.shortCode = shortCode;
 	}
 
 	public Long getId() {
@@ -52,12 +52,12 @@ public class Url implements Serializable{
 		this.originalUrl = originalUrl;
 	}
 
-	public String getShortUrl() {
-		return shortUrl;
+	public String getShortCode() {
+		return shortCode;
 	}
 
-	public void setShortUrl(String shortUrl) {
-		this.shortUrl = shortUrl;
+	public void setShortCode(String shortCode) {
+		this.shortCode = shortCode;
 	}
 
 	@Override
