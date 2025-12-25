@@ -26,7 +26,7 @@ public class UrlResource {
 	@PostMapping
 	public ResponseEntity<String> shorten(@RequestBody String originalUrl) {
 		Url url = service.shorten(originalUrl);
-		return ResponseEntity.ok("https://localhost:8080/" + url.getShortCode());
+		return ResponseEntity.ok("http://localhost:8080/api/urls/" + url.getShortCode());
 	}
 	
 	@GetMapping("/{code}")
