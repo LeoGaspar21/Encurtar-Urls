@@ -25,7 +25,7 @@ public class UrlService {
 	}
 	
 	public Url getOriginalUrl(String shortCode) {
-		return repo.findByShortCode(shortCode).orElseThrow(() -> new UrlNotFoundException("Url não encontrado"));
+		return repo.findByShortCode(shortCode).orElseThrow(() -> new UrlNotFoundException("Url não encontrada"));
 	}
 	
 	private String generateShortUrl() {

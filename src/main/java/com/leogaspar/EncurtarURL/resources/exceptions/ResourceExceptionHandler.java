@@ -11,15 +11,11 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
-	
 	@ExceptionHandler(UrlNotFoundException.class)
-	public ResponseEntity<StandardError> handlerNotFound(UrlNotFoundException e, HttpServletRequest request) {
-		
+	public ResponseEntity<StandardError> urlNotFound(UrlNotFoundException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), 
-				"Não encontrado", e.getMessage(), request.getRequestURI());
+		StandardError err = new StandardError(System.currentTimeMillis(),
+				status.value(), e.getMessage(), "Não encontrado", request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
-		
-		
 	}
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.leogaspar.EncurtarURL.dto.UrlRequestDTO;
+import com.leogaspar.EncurtarURL.dto.UrlResponseDTO;
 import com.leogaspar.EncurtarURL.entity.Url;
 import com.leogaspar.EncurtarURL.services.UrlService;
 
@@ -24,9 +26,11 @@ public class UrlResource {
 	
 	
 	@PostMapping
-	public ResponseEntity<String> shorten(@RequestBody String originalUrl) {
-		Url url = service.shorten(originalUrl);
-		return ResponseEntity.ok("http://localhost:8080/api/urls/" + url.getShortCode());
+	public ResponseEntity<UrlResponseDTO> shorten(@RequestBody UrlRequestDTO dto) {
+		Url url = service.shorten(dto.getOriginalUrl());
+		UrlResponseDTO response = new UrlResponseDTO();
+		response.setShortUrl("http://localhost:8080/api/urls/" + url.getShortCode());
+		return ResponseEntity.ok(response);
 	}
 	
 	@GetMapping("/{code}")
