@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.leogaspar.EncurtarURL.entity.Url;
 import com.leogaspar.EncurtarURL.repository.UrlRepository;
+import com.leogaspar.EncurtarURL.services.exceptions.UrlNotFoundException;
 
 @Service
 public class UrlService {
@@ -24,7 +25,7 @@ public class UrlService {
 	}
 	
 	public Url getOriginalUrl(String shortCode) {
-		return repo.findByShortCode(shortCode).orElseThrow(() -> new RuntimeException());
+		return repo.findByShortCode(shortCode).orElseThrow(() -> new UrlNotFoundException("Url não encontrado"));
 	}
 	
 	private String generateShortUrl() {
