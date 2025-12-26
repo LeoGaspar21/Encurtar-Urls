@@ -16,6 +16,8 @@ import com.leogaspar.EncurtarURL.dto.UrlResponseDTO;
 import com.leogaspar.EncurtarURL.entity.Url;
 import com.leogaspar.EncurtarURL.services.UrlService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/urls")
@@ -26,7 +28,7 @@ public class UrlResource {
 	
 	
 	@PostMapping
-	public ResponseEntity<UrlResponseDTO> shorten(@RequestBody UrlRequestDTO dto) {
+	public ResponseEntity<UrlResponseDTO> shorten(@Valid @RequestBody UrlRequestDTO dto) {
 		Url url = service.shorten(dto.getOriginalUrl());
 		UrlResponseDTO response = new UrlResponseDTO();
 		response.setShortUrl("http://localhost:8080/api/urls/" + url.getShortCode());
