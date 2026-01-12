@@ -12,21 +12,24 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "db_urls")
-public class Url implements Serializable{
+public class Url implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable = false, length = 2048)
 	private String originalUrl;
-	
+
 	@Column(nullable = false, unique = true)
 	private String shortCode;
-	
+
+	@Column(nullable = false)
+	private Integer clicks = 0;
+
 	public Url() {
-		
+
 	}
 
 	public Url(Long id, String originalUrl, String shortCode) {
@@ -60,6 +63,14 @@ public class Url implements Serializable{
 		this.shortCode = shortCode;
 	}
 
+	public Integer getClicks() {
+		return clicks;
+	}
+
+	public void setClicks(Integer clicks) {
+		this.clicks = clicks;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -76,6 +87,9 @@ public class Url implements Serializable{
 		Url other = (Url) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
+	public void incrementClick() {
+		this.clicks++;
+	}
+
 }

@@ -32,6 +32,7 @@ public class UrlResource {
 		Url url = service.shorten(dto.getOriginalUrl());
 		UrlResponseDTO response = new UrlResponseDTO();
 		response.setShortUrl("http://localhost:8080/api/urls/" + url.getShortCode());
+		response.setClicks(url.getClicks());
 		return ResponseEntity.ok(response);
 	}
 	
